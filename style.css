@@ -278,10 +278,15 @@ footer .sci .icons i:hover{
         overflow-x: hidden;
     }
 
+    .new-nav{
+        width: 100%;
+        position: relative;
+    }
+
     .navbar-collapse{
         position: absolute;
         width: 100%;
-        top: 50px;
+        top: 0;
         background-color: hsl(257, 27%, 26%);
         z-index: 6;
     }
@@ -343,10 +348,13 @@ footer .sci .icons i:hover{
         width: 100%;
     }
 
+    .hero-img{
+        overflow-x: hidden;
+    }
+
     .hero img{
         position: static;
         right: 0;
-        overflow-x: hidden;
     }
 
     .shortner{
