@@ -273,6 +273,11 @@ footer .sci .icons i:hover{
 }
 
 @media(max-width: 900px){
+    body{
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
     .navbar-collapse{
         position: absolute;
         width: 100%;
@@ -341,6 +346,7 @@ footer .sci .icons i:hover{
     .hero img{
         position: static;
         right: 0;
+        overflow-x: hidden;
     }
 
     .shortner{
