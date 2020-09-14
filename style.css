@@ -341,6 +341,10 @@ footer .sci .icons i:hover{
         padding: 0 20px !important;
     }
 
+    h1{
+        font-size: 2.5rem;
+    }
+
     .form-group{
         display: flex;
         flex-direction: column;
@@ -366,6 +370,7 @@ footer .sci .icons i:hover{
     .url{
         background-image: url(./images/bg-shorten-mobile.svg);
         top: -180px;
+        padding: 1.5rem;
     }
 
     .url form{
@@ -382,6 +387,15 @@ footer .sci .icons i:hover{
         display: block;
         margin-top: 30px;
         border-radius: 5px;
+    }
+
+    .statistics{
+        margin-top: -200px !important;
+    }
+
+    .links{
+        margin-top: -150px;
+        margin-bottom: 200px;
     }
 
     .link{
