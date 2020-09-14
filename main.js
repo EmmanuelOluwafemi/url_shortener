@@ -1,6 +1,12 @@
 
 let links = document.querySelector(".links");
 let errorText = document.querySelector(".error-text");
+const submitButton = document.querySelector("#submitLink");
+const urlInput = document.querySelector("#urlLink");
+const errorFormHandling = document.querySelector(".shortenLinks__error");
+const APILink = `https://rel.ink/api/links/`;
+
+// Validate input
 
 let validateInput = () => {
     if (urlInput.value === ""){
@@ -15,62 +21,9 @@ let validateInput = () => {
 
 
 
-const submitButton = document.querySelector("#submitLink");
-const urlInput = document.querySelector("#urlLink");
-const errorFormHandling = document.querySelector(".shortenLinks__error");
-const APILink = `https://rel.ink/api/links/`;
 
-// const fetchLINK = async (link) => {
-//   const response = await fetch(shortenAPILink, {
-//     method: "POST",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//     credentials: "same-origin",
-//     body: JSON.stringify({ url: link }),
-//   });
-//   try {
-//     const jsonData = await response.json(link);
-//     const getLink = async () => {
-//       const result = await fetch(`${shortenAPILink}${jsonData.hashid}`, {
-//         method: "GET",
-//         headers: {
-//           Accept: "application/json",
-//           "Content-Type": "application/json",
-//         },
-//         credentials: "same-origin",
-//       });
-//       try {
-//         const resultJson = await result.json();
-//         console.log(resultJson);
-//         // enteredLink.textContent = resultJson.url.substr(0, 50) + "...";
-//         let endLink = "https://rel.ink/" + resultJson.hashid;
-//         console.log(endLink);
-//         outPutLink.textContent = endLink;
-//         if (resultJson) {
-//           resultBox.style.display = "block";
-//         }
-//       } catch (error) {
-//         console.log(error);
-//         errorFormHandling.style.display = "block";
-//         setTimeout((_) => {
-//           errorFormHandling.style.display = "none";
-//         }, 4000);
-//       }
-//     };
-//     getLink();
-//   } catch (error) {
-//     console.log(error);
-//     errorFormHandling.style.display = "block";
-//   }
-// };
 
-// submitButton.addEventListener("click", async (e) => {
-//   e.preventDefault();
-//   await fetchLINK(urlInput.value);
-//   urlInput.value = "";
-// });
+// Fetch api from API
 
 const fetchLink = async (link) => {
 
@@ -111,7 +64,11 @@ const fetchLink = async (link) => {
     console.log(shortenedUrl)
 
     localStorage.setItem(inputUrl, shortenedUrl);
+
+    location.reload();
 }
+
+// Show Url
 
 const showUrlList = () => {
     for(let i = 0; i < localStorage.length; i++){
@@ -140,6 +97,8 @@ const showUrlList = () => {
     }
 }
 
+// Copy to Clipboard
+
 const copyToClip = (e) => {
     const copy = document.querySelector("#copy");
     const copyBtn = document.querySelector("#copyBtn");
@@ -149,13 +108,12 @@ const copyToClip = (e) => {
     copyBtn.textContent = "Copied!"
 }
 
+// Submit Button
 
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
     if(!validateInput()){
         fetchLink(urlInput.value);
-
-        
     }
 })
 
