@@ -141,6 +141,10 @@ p{
     display: none;
 }
 
+.error-text.show{
+    display: block;
+}
+
 .links{
     width: 100%;
     min-height: 60px;
@@ -156,8 +160,13 @@ p{
     align-items: center;
 }
 
-.link p, .link button{
+.link input, .link button{
     display: inline;
+}
+
+.link input{
+    border: none;
+    outline: none;
 }
 
 .copy-btn{
@@ -404,8 +413,18 @@ footer .sci .icons i:hover{
         justify-content: center;
     }
 
-    .link p{
+    .link p, .link input{
         width: 100%;
+        display: block;
+    }
+
+    .link p{
+        border-bottom: 1px solid hsl(0, 0%, 75%);
+    }
+
+    .link input{
+        padding-bottom: 16px;
+        padding-top: 16px;
     }
 
     .gen-link{
