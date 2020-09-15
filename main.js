@@ -20,15 +20,13 @@ let validateInput = () => {
 }
 
 
-
-
-
 // Fetch api from API
 
 const fetchLink = async (link) => {
 
+    let loader =  `<div class="loader">Loading....</div>`;
+    document.querySelector(".loading").innerHTML = loader;
     // post link to api
-
     const response = await fetch(APILink, {
         method: 'POST',
         headers: {
@@ -66,6 +64,8 @@ const fetchLink = async (link) => {
     localStorage.setItem(inputUrl, shortenedUrl);
 
     location.reload();
+
+    document.querySelector(".loading").innerHTML = '';
 }
 
 // Show Url
@@ -87,7 +87,7 @@ const showUrlList = () => {
         <p class="posted-link m-0 text-dark-violet text-sm-left pb-3 pb-lg-0">${key}</p>
         <div class="gen-link">
         <input type="text" id="copy" class="mr-4 text-green text-sm-left" value="${value}" readonly="readonly">
-          <button id="copyBtn" class="btn bg-green rounded py-2 copy-btn" onclick="copyToClip()">Copy</button>
+          <button id="copyBtn" class="copyBtn btn bg-green rounded py-2 copy-btn" onclick="copyToClip()">Copy</button>
         </div>
         `;
 
@@ -99,13 +99,23 @@ const showUrlList = () => {
 
 // Copy to Clipboard
 
-const copyToClip = (e) => {
-    const copy = document.querySelector("#copy");
-    const copyBtn = document.querySelector("#copyBtn");
-    copy.select();
-    document.execCommand("copy");
-    copyBtn.classList.add("active");
-    copyBtn.textContent = "Copied!"
+function copyLink(e) {
+    // Check to only fire this action if we're clicking on the copy button
+    if(e.target.classList.contains('copyBtn')) {
+        console.log("coping");
+        const copy = document.querySelector("#copy");
+        // Select the input text field
+        copy.select();
+        copy.setSelectionRange(0, 99999); //For mobile devices
+    
+        // Copy the text inside the text field 
+        document.execCommand("copy");
+    
+        // Change the appearance of the button to indicate successfull copying
+        e.target.innerHTML = 'Copied!';
+        e.target.style.backgroundColor = 'hsl(260, 8%, 14%)';
+        e.target.style.border = '1px solid hsl(260, 8%, 14%)';
+    }
 }
 
 // Submit Button
@@ -117,4 +127,9 @@ submitButton.addEventListener("click", (e) => {
     }
 })
 
+// Call Function
+
 showUrlList()
+
+// Event Listener
+links.addEventListener('click', copyLink);

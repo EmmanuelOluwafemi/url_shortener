@@ -177,6 +177,22 @@ p{
     background-color: hsl(257, 27%, 26%);
 }
 
+.loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.4);
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: #fff;
+    font-weight: 700;
+}
+
 .box{
     position: relative;
     background-color: #fff;
@@ -412,6 +428,8 @@ footer .sci .icons i:hover{
         flex-direction: column;
         justify-content: center;
     }
+
+    
 
     .link p, .link input{
         width: 100%;
