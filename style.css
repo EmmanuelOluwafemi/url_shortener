@@ -174,7 +174,8 @@ p{
 }
 
 .copy-btn.active{
-    background-color: hsl(257, 27%, 26%);
+    background-color:hsl(260, 8%, 14%);
+    border: 1px solid hsl(260, 8%, 14%);
 }
 
 .loader{

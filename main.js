@@ -113,8 +113,7 @@ function copyLink(e) {
     
         // Change the appearance of the button to indicate successfull copying
         e.target.innerHTML = 'Copied!';
-        e.target.style.backgroundColor = 'hsl(260, 8%, 14%)';
-        e.target.style.border = '1px solid hsl(260, 8%, 14%)';
+        e.target.classList.add("active");
     }
 }
 
