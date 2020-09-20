@@ -19,53 +19,55 @@ let validateInput = () => {
     }
 }
 
-
 // Fetch api from API
 
 const fetchLink = async (link) => {
 
-    let loader =  `<div class="loader">Loading....</div>`;
-    document.querySelector(".loading").innerHTML = loader;
-    // post link to api
-    const response = await fetch(APILink, {
-        method: 'POST',
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        credentials: "same-origin",
-        body: JSON.stringify({ url: link }),
-    });
+    if (urlInput.value !== ""){
+        let loader =  `<div class="loader">Loading....</div>`;
+        document.querySelector(".loading").innerHTML = loader;
+        // post link to api
+        const response = await fetch(APILink, {
+            method: 'POST',
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            credentials: "same-origin",
+            body: JSON.stringify({ url: link }),
+        });
 
-    const data = await response.json(link);
-    console.log(data)
+        const data = await response.json(link);
+        console.log(data)
 
-    // Get short link from api
-    const getLink = await fetch(`${APILink}${data.hashid}`, {
-        method: 'GET',
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        credentials: "same-origin",
-    });
+        // Get short link from api
+        const getLink = await fetch(`${APILink}${data.hashid}`, {
+            method: 'GET',
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            credentials: "same-origin",
+        });
+        
+        const resultJson = await getLink.json();
+        console.log(resultJson);
+
+        // input Url
+        let inputUrl = resultJson.url.substr(0, 50) + "...";
+        console.log(inputUrl)
+
+        // ShortenedUrl link
+        let shortenedUrl = "https://rel.ink/" + resultJson.hashid;
+        console.log(shortenedUrl)
+
+        localStorage.setItem(inputUrl, shortenedUrl);
+
+        location.reload();
+
+        document.querySelector(".loading").innerHTML = '';
+    }
     
-    const resultJson = await getLink.json();
-    console.log(resultJson);
-
-    // input Url
-    let inputUrl = resultJson.url.substr(0, 50) + "...";
-    console.log(inputUrl)
-
-    // ShortenedUrl link
-    let shortenedUrl = "https://rel.ink/" + resultJson.hashid;
-    console.log(shortenedUrl)
-
-    localStorage.setItem(inputUrl, shortenedUrl);
-
-    location.reload();
-
-    document.querySelector(".loading").innerHTML = '';
 }
 
 // Show Url
